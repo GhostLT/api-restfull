@@ -1,0 +1,897 @@
+{
+	"info": {
+		"_postman_id": "d3a95328-4026-42e9-b847-5e47bbcef0e4",
+		"name": "APIREST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - Selección básica",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/instructors",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"instructors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Seleccionar dato específico",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/instructors?select=id_instructor,name_instructor",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"instructors"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "id_instructor,name_instructor"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Filtro de un solo valor",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/courses?select=id_course,title_course,description_course&linkTo=title_course&equalTo=Git y GitHub Completo Desde Cero",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"courses"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "id_course,title_course,description_course"
+						},
+						{
+							"key": "linkTo",
+							"value": "title_course"
+						},
+						{
+							"key": "equalTo",
+							"value": "Git y GitHub Completo Desde Cero"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Filtros de varios valores",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/courses?select=id_course,title_course,description_course,id_instructor_course&linkTo=title_course,id_instructor_course&equalTo=Git y GitHub Completo Desde Cero,3",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"courses"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "id_course,title_course,description_course,id_instructor_course"
+						},
+						{
+							"key": "linkTo",
+							"value": "title_course,id_instructor_course"
+						},
+						{
+							"key": "equalTo",
+							"value": "Git y GitHub Completo Desde Cero,3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Ordenar datos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/courses?select=title_course&orderBy=title_course&orderMode=ASC",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"courses"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "title_course"
+						},
+						{
+							"key": "orderBy",
+							"value": "title_course"
+						},
+						{
+							"key": "orderMode",
+							"value": "ASC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Limitar datos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/courses?select=title_course,description_course&orderBy=title_course&orderMode=DESC&startAt=0&endAt=5",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"courses"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "title_course,description_course"
+						},
+						{
+							"key": "orderBy",
+							"value": "title_course"
+						},
+						{
+							"key": "orderMode",
+							"value": "DESC"
+						},
+						{
+							"key": "startAt",
+							"value": "0"
+						},
+						{
+							"key": "endAt",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Relaciones entre tablas sin filtro",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/relations?rel=courses,instructors&type=course,instructor&select=name_instructor,title_course,id_course&orderBy=id_course&orderMode=ASC&startAt=0&endAt=6",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"relations"
+					],
+					"query": [
+						{
+							"key": "rel",
+							"value": "courses,instructors"
+						},
+						{
+							"key": "type",
+							"value": "course,instructor"
+						},
+						{
+							"key": "select",
+							"value": "name_instructor,title_course,id_course"
+						},
+						{
+							"key": "orderBy",
+							"value": "id_course"
+						},
+						{
+							"key": "orderMode",
+							"value": "ASC"
+						},
+						{
+							"key": "startAt",
+							"value": "0"
+						},
+						{
+							"key": "endAt",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Relaciones entre tablas con filtro",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/relations?rel=countries,codes,dialcodes&type=country,code,dialcode&select=name_country,initial_code,digit_dialcode&linkTo=name_country&equalTo=Colombia",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"relations"
+					],
+					"query": [
+						{
+							"key": "rel",
+							"value": "countries,codes,dialcodes"
+						},
+						{
+							"key": "type",
+							"value": "country,code,dialcode"
+						},
+						{
+							"key": "select",
+							"value": "name_country,initial_code,digit_dialcode"
+						},
+						{
+							"key": "linkTo",
+							"value": "name_country"
+						},
+						{
+							"key": "equalTo",
+							"value": "Colombia"
+						},
+						{
+							"key": "startAt",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "endAt",
+							"value": "6",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Búsqueda sin relaciones y con filtros",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/products?select=*&linkTo=name_product,id_category_product&search=sound,3",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "select",
+							"value": "*"
+						},
+						{
+							"key": "linkTo",
+							"value": "name_product,id_category_product"
+						},
+						{
+							"key": "search",
+							"value": "sound,3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Búsqueda con relaciones y con filtros",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/relations?rel=products,categories&type=product,category&select=name_product,name_category&linkTo=name_product,id_category_product&search=Sound,3",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"relations"
+					],
+					"query": [
+						{
+							"key": "rel",
+							"value": "products,categories"
+						},
+						{
+							"key": "type",
+							"value": "product,category"
+						},
+						{
+							"key": "select",
+							"value": "name_product,name_category"
+						},
+						{
+							"key": "linkTo",
+							"value": "name_product,id_category_product"
+						},
+						{
+							"key": "search",
+							"value": "Sound,3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Rangos con filtros",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/products?linkTo=date_created_product&between1=2021-01-01&between2=2021-04-30&select=*&filterTo=id_category_product&inTo=1",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "linkTo",
+							"value": "date_created_product"
+						},
+						{
+							"key": "between1",
+							"value": "2021-01-01"
+						},
+						{
+							"key": "between2",
+							"value": "2021-04-30"
+						},
+						{
+							"key": "select",
+							"value": "*"
+						},
+						{
+							"key": "filterTo",
+							"value": "id_category_product"
+						},
+						{
+							"key": "inTo",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Rangos entre relaciones con filtros",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/relations?rel=products,categories&type=product,category&linkTo=date_created_product&between1=2021-01-01&between2=2021-04-30&select=name_product,name_category,date_created_product&filterTo=id_category_product&inTo=1",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"relations"
+					],
+					"query": [
+						{
+							"key": "rel",
+							"value": "products,categories"
+						},
+						{
+							"key": "type",
+							"value": "product,category"
+						},
+						{
+							"key": "linkTo",
+							"value": "date_created_product"
+						},
+						{
+							"key": "between1",
+							"value": "2021-01-01"
+						},
+						{
+							"key": "between2",
+							"value": "2021-04-30"
+						},
+						{
+							"key": "select",
+							"value": "name_product,name_category,date_created_product"
+						},
+						{
+							"key": "filterTo",
+							"value": "id_category_product"
+						},
+						{
+							"key": "inTo",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registro de usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email_instructor",
+							"value": "instructor@correo.com",
+							"type": "text"
+						},
+						{
+							"key": "password_instructor",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{endpoint}}/instructors?register=true&suffix=instructor",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"instructors"
+					],
+					"query": [
+						{
+							"key": "register",
+							"value": "true"
+						},
+						{
+							"key": "suffix",
+							"value": "instructor"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login de usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email_instructor",
+							"value": "instructor@correo.com",
+							"type": "text"
+						},
+						{
+							"key": "password_instructor",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{endpoint}}/instructors?login=true&suffix=instructor",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"instructors"
+					],
+					"query": [
+						{
+							"key": "login",
+							"value": "true"
+						},
+						{
+							"key": "suffix",
+							"value": "instructor"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Crear registros",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title_course",
+							"value": "Aprende PHP de cero a avanzado",
+							"type": "text"
+						},
+						{
+							"key": "description_course",
+							"value": "Aprende todas las bases de este maravillos lenguaje",
+							"type": "text"
+						},
+						{
+							"key": "id_instructor_course",
+							"value": "12",
+							"type": "text"
+						},
+						{
+							"key": "image_course",
+							"value": "https://i.udemycdn.com/course/480x270/672600_1def_7.jpg",
+							"type": "text"
+						},
+						{
+							"key": "price_course",
+							"value": "199.99",
+							"type": "text"
+						},
+						{
+							"key": "date_created_course",
+							"value": "2021-10-27",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{endpoint}}/courses?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzU0NTcwNzAsImV4cCI6MTYzNTU0MzQ3MCwiZGF0YSI6eyJpZCI6IjMwIiwiZW1haWwiOiJpbnN0cnVjdG9yQGNvcnJlby5jb20ifX0.LnVav6yWEBJR0r9VmfeWuBvQBw7jp8-a7Vchhm9Vqmc&table=instructors&suffix=instructor&except",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"courses"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzU0NTcwNzAsImV4cCI6MTYzNTU0MzQ3MCwiZGF0YSI6eyJpZCI6IjMwIiwiZW1haWwiOiJpbnN0cnVjdG9yQGNvcnJlby5jb20ifX0.LnVav6yWEBJR0r9VmfeWuBvQBw7jp8-a7Vchhm9Vqmc"
+						},
+						{
+							"key": "table",
+							"value": "instructors"
+						},
+						{
+							"key": "suffix",
+							"value": "instructor"
+						},
+						{
+							"key": "except",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Editar registros",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title_course",
+							"value": "Aprende PHP de cero a avanzado",
+							"type": "text"
+						},
+						{
+							"key": "description_course",
+							"value": "Aprende todas las bases de este maravillos lenguaje",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "id_instructor_course",
+							"value": "12",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "image_course",
+							"value": "https://i.udemycdn.com/course/480x270/672600_1def_7.jpg",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price_course",
+							"value": "199.99",
+							"type": "text"
+						},
+						{
+							"key": "date_created_course",
+							"value": "2021-10-27",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{endpoint}}/courses?id=67&nameId=id_course&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzU0NTcwNzAsImV4cCI6MTYzNTU0MzQ3MCwiZGF0YSI6eyJpZCI6IjMwIiwiZW1haWwiOiJpbnN0cnVjdG9yQGNvcnJlby5jb20ifX0.LnVav6yWEBJR0r9VmfeWuBvQBw7jp8-a7Vchhm9Vqmc&table=instructors&suffix=instructor",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"courses"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "67"
+						},
+						{
+							"key": "nameId",
+							"value": "id_course"
+						},
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzU0NTcwNzAsImV4cCI6MTYzNTU0MzQ3MCwiZGF0YSI6eyJpZCI6IjMwIiwiZW1haWwiOiJpbnN0cnVjdG9yQGNvcnJlby5jb20ifX0.LnVav6yWEBJR0r9VmfeWuBvQBw7jp8-a7Vchhm9Vqmc"
+						},
+						{
+							"key": "table",
+							"value": "instructors"
+						},
+						{
+							"key": "suffix",
+							"value": "instructor"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - Eliminar registros",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{endpoint}}/courses?id=66&nameId=id_course&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzU0NTcwNzAsImV4cCI6MTYzNTU0MzQ3MCwiZGF0YSI6eyJpZCI6IjMwIiwiZW1haWwiOiJpbnN0cnVjdG9yQGNvcnJlby5jb20ifX0.LnVav6yWEBJR0r9VmfeWuBvQBw7jp8-a7Vchhm9Vqmc&table=instructors&suffix=instructor",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"courses"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "66"
+						},
+						{
+							"key": "nameId",
+							"value": "id_course"
+						},
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MzU0NTcwNzAsImV4cCI6MTYzNTU0MzQ3MCwiZGF0YSI6eyJpZCI6IjMwIiwiZW1haWwiOiJpbnN0cnVjdG9yQGNvcnJlby5jb20ifX0.LnVav6yWEBJR0r9VmfeWuBvQBw7jp8-a7Vchhm9Vqmc"
+						},
+						{
+							"key": "table",
+							"value": "instructors"
+						},
+						{
+							"key": "suffix",
+							"value": "instructor"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear o editar registros con excepción",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "c5LTA6WPbMwHhEabYu77nN9cn4VcMj",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title_course",
+							"value": "Aprende PHP de cero a avanzado",
+							"type": "text"
+						},
+						{
+							"key": "description_course",
+							"value": "Aprende todas las bases de este maravillos lenguaje",
+							"type": "text"
+						},
+						{
+							"key": "id_instructor_course",
+							"value": "12",
+							"type": "text"
+						},
+						{
+							"key": "image_course",
+							"value": "https://i.udemycdn.com/course/480x270/672600_1def_7.jpg",
+							"type": "text"
+						},
+						{
+							"key": "price_course",
+							"value": "199.99",
+							"type": "text"
+						},
+						{
+							"key": "date_created_course",
+							"value": "2021-10-27",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{endpoint}}/courses?token=no&table=instructors&suffix=instructor&except=name_instructor",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"courses"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "no"
+						},
+						{
+							"key": "table",
+							"value": "instructors"
+						},
+						{
+							"key": "suffix",
+							"value": "instructor"
+						},
+						{
+							"key": "except",
+							"value": "name_instructor"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
