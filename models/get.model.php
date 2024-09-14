@@ -1,13 +1,17 @@
 <?php
 
+//requiero la conexion a la base de datos
 require_once "connection.php";
 
+//esta clase retorna la sentencia SQL hacia la base de datos
 class GetModel{
 
 	/*=============================================
 	Peticiones GET sin filtro
 	=============================================*/
 
+	//concentremonos en el modelo aqui necesito hacer una sentencia SQL y la almacenamos en 
+	//la variable $sql la cual va a ser una sentencia de tipo GET
 	static public function getData($table, $select,$orderBy,$orderMode,$startAt,$endAt){
 
 		/*=============================================
@@ -58,10 +62,12 @@ class GetModel{
 
 		}
 
+		//hace la conexion a la base de datos y prepara la sentencia
 		$stmt = Connection::connect()->prepare($sql);
 
 		try{
 
+			//ejecuta la consulta
 			$stmt -> execute();
 
 		}catch(PDOException $Exception){
@@ -70,6 +76,9 @@ class GetModel{
 		
 		}
 
+		//devolvemos toda la informacion de la tabla
+		//si yo no quiero que vengan los numeros de indices a la hora de retornar la consulta
+		//en el JSON paso como parametro PDO::FETCH_CLASS
 		return $stmt -> fetchAll(PDO::FETCH_CLASS);
 
 	}
@@ -151,6 +160,7 @@ class GetModel{
 
 		}
 
+		//hace la conexion a la base de datos y prepara la sentencia
 		$stmt = Connection::connect()->prepare($sql);
 
 		foreach ($linkToArray as $key => $value) {
@@ -160,7 +170,7 @@ class GetModel{
 		}
 
 		try{
-
+			//ejecuta la sentencia
 			$stmt -> execute();
 
 		}catch(PDOException $Exception){
@@ -168,7 +178,9 @@ class GetModel{
 			return null;
 		
 		}
-
+		//devolvemos la informacion en un fetchAll
+		//si yo no quiero que vengan los numeros de indices a la hora de retornar la consulta
+		//en el JSON paso como parametro PDO::FETCH_CLASS
 		return $stmt -> fetchAll(PDO::FETCH_CLASS);
 
 	}
@@ -244,10 +256,11 @@ class GetModel{
 
 			}
 
+			//hace la conexion a la base de datos y prepara la sentencia
 			$stmt = Connection::connect()->prepare($sql);
 
 			try{
-
+				//ejecutamos la sentencia
 				$stmt -> execute();
 
 			}catch(PDOException $Exception){
@@ -255,7 +268,9 @@ class GetModel{
 				return null;
 			
 			}
-
+			//devolvemos la informacion en un fetchAll
+			//si yo no quiero que vengan los numeros de indices a la hora de retornar la consulta
+			//en el JSON paso como parametro PDO::FETCH_CLASS
 			return $stmt -> fetchAll(PDO::FETCH_CLASS);
 
 		}else{
@@ -357,6 +372,7 @@ class GetModel{
 
 			}
 
+			//hace la conexion a la base de datos y prepara la sentencia
 			$stmt = Connection::connect()->prepare($sql);
 
 			foreach ($linkToArray as $key => $value) {
@@ -366,7 +382,7 @@ class GetModel{
 			}
 
 			try{
-
+				//ejecuta la sentencia
 				$stmt -> execute();
 
 			}catch(PDOException $Exception){
@@ -374,7 +390,9 @@ class GetModel{
 				return null;
 			
 			}
-
+			//devolvemos la informacion en un fetchAll
+			//si yo no quiero que vengan los numeros de indices a la hora de retornar la consulta
+			//en el JSON paso como parametro PDO::FETCH_CLASS
 			return $stmt -> fetchAll(PDO::FETCH_CLASS);
 
 		}else{
@@ -461,6 +479,7 @@ class GetModel{
 
 		}
 
+		//hace la conexion a la base de datos y prepara la sentencia
 		$stmt = Connection::connect()->prepare($sql);
 
 		foreach ($linkToArray as $key => $value) {
@@ -474,7 +493,7 @@ class GetModel{
 		}
 
 		try{
-
+			//ejecuta la sentencia
 			$stmt -> execute();
 
 		}catch(PDOException $Exception){
@@ -482,7 +501,9 @@ class GetModel{
 			return null;
 		
 		}
-
+		//devolvemos la consulta en un fetchAll
+		//si yo no quiero que vengan los numeros de indices a la hora de retornar la consulta
+		//en el JSON paso como parametro PDO::FETCH_CLASS
 		return $stmt -> fetchAll(PDO::FETCH_CLASS);
 
 
@@ -580,6 +601,7 @@ class GetModel{
 
 			}
 
+			//hace la conexion a la base de datos y prepara la sentencia
 			$stmt = Connection::connect()->prepare($sql);
 
 			foreach ($linkToArray as $key => $value) {
@@ -593,7 +615,7 @@ class GetModel{
 			}
 
 			try{
-
+				//ejecuta la sentencia
 				$stmt -> execute();
 
 			}catch(PDOException $Exception){
@@ -601,7 +623,9 @@ class GetModel{
 				return null;
 			
 			}
-
+			//devolvemos la consulta en un fetchAll
+			//si yo no quiero que vengan los numeros de indices a la hora de retornar la consulta
+			//en el JSON paso como parametro PDO::FETCH_CLASS
 			return $stmt -> fetchAll(PDO::FETCH_CLASS);
 
 		}else{
@@ -691,10 +715,11 @@ class GetModel{
 
 		}
 
+		//hace la conexion a la base de datos y prepara la sentencia
 		$stmt = Connection::connect()->prepare($sql);
 
 		try{
-
+			//ejecuta la consulta
 			$stmt -> execute();
 
 		}catch(PDOException $Exception){
@@ -702,7 +727,9 @@ class GetModel{
 			return null;
 		
 		}
-
+		//la devolvemos en un fetchAll
+		//si yo no quiero que vengan los numeros de indices a la hora de retornar la consulta
+		//en el JSON paso como parametro PDO::FETCH_CLASS
 		return $stmt -> fetchAll(PDO::FETCH_CLASS);
 
 	}
@@ -794,10 +821,11 @@ class GetModel{
 
 			}
 
+			//hace la conexion a la base de datos y prepara la sentencia
 			$stmt = Connection::connect()->prepare($sql);
 
 			try{
-
+				//ejecuta la consulta
 				$stmt -> execute();
 
 			}catch(PDOException $Exception){
@@ -805,7 +833,9 @@ class GetModel{
 				return null;
 			
 			}
-
+			//la devolvemos en un fetchAll
+			//si yo no quiero que vengan los numeros de indices a la hora de retornar la consulta
+			//en el JSON paso como parametro PDO::FETCH_CLASS
 			return $stmt -> fetchAll(PDO::FETCH_CLASS);
 
 		}else{
